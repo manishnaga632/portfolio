@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Image from "next/image";
-
 
 export default function Home() {
   const [formData, setFormData] = useState({
@@ -16,10 +15,20 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState({ message: '', type: '' });
 
+  // Add useEffect to automatically hide the alert after 5 seconds
+  useEffect(() => {
+    if (alert.message) {
+      const timer = setTimeout(() => {
+        setAlert({ message: '', type: '' });
+      }, 5000); // Hide after 5 seconds
+
+      return () => clearTimeout(timer); // Clean up the timer
+    }
+  }, [alert.message]);
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -134,7 +143,7 @@ export default function Home() {
           {/* Header End */}
           {/* Large Button Start */}
           <div className="large-btn">
-            <div className="content-inner">
+            <div className="content-inner">=
               <a className="btn" href="/resume.pdf" download>
                 <i className="fa fa-download" />
                 Resume
@@ -214,10 +223,10 @@ export default function Home() {
                         aria-valuemax={100}
                       />
                     </div>
-                    <div className="skill-name">
+                    {/* <div className="skill-name">
                       <p>Marketing</p>
                       <p>85%</p>
-                    </div>
+                    </div> */}
                     <div className="progress">
                       <div
                         className="progress-bar"
@@ -303,10 +312,9 @@ export default function Home() {
               <div className="row">
                 <div className="col-lg-12">
                   <ul id="portfolio-flters">
-                    <li data-filter="*" className="filter-active">
-                      All
-                    </li>
-
+                    <li data-filter="*" className="filter-active">All</li>
+                    {/* <li data-filter=".web-des">Web Design</li>
+          <li data-filter=".web-dev">Web Development</li> */}
                   </ul>
                 </div>
               </div>
@@ -324,15 +332,27 @@ export default function Home() {
                       >
                         <i className="fa fa-eye" />
                       </a>
-                      <a href="https://gymstar-web.onrender.com" className="link-details" title="More Details">
+                      <a
+                        href="https://gymstar-web.onrender.com"
+                        className="link-details"
+                        title="More Details"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="fa fa-link" />
                       </a>
-                      <a className="portfolio-title" href="https://gymstar-web.onrender.com">
+                      <a
+                        className="portfolio-title"
+                        href="https://gymstar-web.onrender.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         GymStar <span>Get Gym Membership Plan</span>
                       </a>
                     </figure>
                   </div>
                 </div>
+
                 <div className="col-lg-4 col-md-6 portfolio-item web-des">
                   <div className="portfolio-wrap">
                     <figure>
@@ -346,15 +366,27 @@ export default function Home() {
                       >
                         <i className="fa fa-eye" />
                       </a>
-                      <a href="https://bookmybusweb.onrender.com" className="link-details" title="More Details">
+                      <a
+                        href="https://bookmybusweb.onrender.com"
+                        className="link-details"
+                        title="More Details"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="fa fa-link" />
                       </a>
-                      <a className="portfolio-title" href="https://bookmybusweb.onrender.com">
+                      <a
+                        className="portfolio-title"
+                        href="https://bookmybusweb.onrender.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         Book My Trip <span>Book Online Bus Ticket</span>
                       </a>
                     </figure>
                   </div>
                 </div>
+
                 <div className="col-lg-4 col-md-6 portfolio-item web-dev">
                   <div className="portfolio-wrap">
                     <figure>
@@ -368,15 +400,27 @@ export default function Home() {
                       >
                         <i className="fa fa-eye" />
                       </a>
-                      <a href="https://e-commerceweb-648k.onrender.com" className="link-details" title="More Details">
+                      <a
+                        href="https://e-commerceweb-648k.onrender.com"
+                        className="link-details"
+                        title="More Details"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="fa fa-link" />
                       </a>
-                      <a className="portfolio-title" href="https://e-commerceweb-648k.onrender.com/">
-                        E shop <span>Online Shoping</span>
+                      <a
+                        className="portfolio-title"
+                        href="https://e-commerceweb-648k.onrender.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        E shop <span>Online Shopping</span>
                       </a>
                     </figure>
                   </div>
                 </div>
+
                 <div className="col-lg-4 col-md-6 portfolio-item web-dev">
                   <div className="portfolio-wrap">
                     <figure>
@@ -390,20 +434,30 @@ export default function Home() {
                       >
                         <i className="fa fa-eye" />
                       </a>
-                      <a href="https://electra-project.onrender.com" className="link-details" title="More Details">
+                      <a
+                        href="https://electra-project.onrender.com"
+                        className="link-details"
+                        title="More Details"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         <i className="fa fa-link" />
                       </a>
-                      <a className="portfolio-title" href="https://electra-project.onrender.com">
-                        Electra <span>Electra services and Products </span>
+                      <a
+                        className="portfolio-title"
+                        href="https://electra-project.onrender.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Electra <span>Electra Services and Products</span>
                       </a>
                     </figure>
                   </div>
                 </div>
-
-
               </div>
             </div>
           </div>
+
 
           {/* Contact Start */}
           <div className="contact" id="contact">
